@@ -1,0 +1,19 @@
+BootStrap: docker
+From: ubuntu:16.04
+
+%post
+apt-get -y update
+apt-get -y install default-jre wget unzip libfindbin-libs-perl
+wget "https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.5.zip"
+unzip fastqc_v0.11.5.zip
+cp -R ./FastQC/ /opt/
+chmod +x /opt/FastQC/fastqc
+chmod -R +r /opt
+ln -s /opt/FastQC/fastqc /usr/local/bin/fastqc
+
+%environment
+    export LC_ALL=C
+    export PATH=/usr/games:$PATH
+
+%runscript
+fastqc "$@"
