@@ -10,10 +10,8 @@ cp -R ./FastQC/ /opt/
 chmod +x /opt/FastQC/fastqc
 chmod -R +r /opt
 ln -s /opt/FastQC/fastqc /usr/local/bin/fastqc
-
 %environment
     export LC_ALL=C
     export PATH=/usr/games:$PATH
-
 %runscript
 fastqc "$@"
